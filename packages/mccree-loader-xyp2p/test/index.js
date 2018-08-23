@@ -133,22 +133,7 @@ describe('module dependency', function(){
     });
   });
   
-  describe('loadPartail', function(){
-    describe('302', function(){
-      it('loadPartail with 302 resource', function(done){
-        try{
-          xy.loadPartail('https://liveapi.videojj.com/api/v1/getUser?platformId=5714b45a46a2c22f00f09fb9&platformUserId=222222&cate=dota2', 'range', 'opts');
-          expect(xy.xhr).to.be.a('XMLHttpRequest');
-          setTimeout(function(){
-            xy.xhr.onprogress = null;
-            xy.xhr.onreadystatechange = null;
-            done();
-          },1500);
-        }catch(e){
-          expect(e).not.to.be.undefined;
-        }
-      });
-      
+  describe('loadPartail', function(){      
       describe('delay', function(){
         it('delay', function(done){
           setTimeout(function(){
