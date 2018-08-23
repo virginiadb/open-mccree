@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/index.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">src/</a> index.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">3.51% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>2/57</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">3.57% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>1/28</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/12</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">3.51% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>2/57</span>
+      </div>
+      <div class='fl pad1y'>
+        <span class="strong">1 branch</span>
+        <span class="quiet">Ignored</span>  &nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import LoaderController from 'mccree-controller-loader';
+&nbsp;
+/**
+ * Tencent X-P2P loader.
+ * Have the same interface as other loader.
+ */
+class <span class="cstat-no" title="statement not covered" >QVBP2PLoader {</span>
+&nbsp;
+    /**
+     * Make sure your browser supports this loader before instantiating it
+     * e.g. QVBP2PLoader.isSupported();
+     *
+     * @returns {boolean}
+     */
+    static isSupported() <span class="fstat-no" title="function not covered" >{</span>
+        let <span class="cstat-no" title="statement not covered" >ql = window.qvbp2p;</span>
+        if (<span class="cstat-no" title="statement not covered" >ql) {</span>
+            return <span class="cstat-no" title="statement not covered" >ql.supportLoader;</span>
+        } else {
+            if (<span class="cstat-no" title="statement not covered" >window.QVBP2P) {</span>
+                return <span class="cstat-no" title="statement not covered" >window.QVBP2P.isSupported();</span>
+            }
+            return <span class="cstat-no" title="statement not covered" >false;</span>
+        }
+    }
+&nbsp;
+    /**
+     * Constructor
+     *
+     * @constructs
+     * @param {Object} config - please note that we need a 'rollback' configuration in your 'config' param
+     * @param {Function} config.rollback - This method is called when our SDK meets an error.
+     */
+    constructor(<span class="fstat-no" title="function not covered" >config) {</span>
+        this.<span class="cstat-no" title="statement not covered" >TAG = 'Mccree-loader-tencentp2p';</span>
+        this.<span class="cstat-no" title="statement not covered" >type = 'loader';</span>
+        this.<span class="cstat-no" title="statement not covered" >config = config || {};</span>
+        this.<span class="cstat-no" title="statement not covered" >_initQVBP2P();</span>
+    }
+&nbsp;
+    /**
+     * Init X-P2P
+     * @private
+     */
+    _initQVBP2P() <span class="fstat-no" title="function not covered" >{</span>
+        if (<span class="cstat-no" title="statement not covered" >!window.qvbp2p) {</span>
+            window.<span class="cstat-no" title="statement not covered" >qvbp2p = new window.QVBP2P();</span>
+            window.<span class="cstat-no" title="statement not covered" >qvbp2p.rollback = this.config.rollback;</span>
+            if (<span class="cstat-no" title="statement not covered" >this.player) {</span>
+                window.<span class="cstat-no" title="statement not covered" >qvbp2p.player = this.player;</span>
+            }
+        }
+    }
+&nbsp;
+    /**
+     * This function is called when loader intializing, must bind(this).
+     *
+     * @param {Object} mccree - the mccree core.
+     */
+    init(<span class="fstat-no" title="function not covered" >mccree) {</span>
+        this.<span class="cstat-no" title="statement not covered" >player = mccree;</span>
+        window.<span class="cstat-no" title="statement not covered" >qvbp2p.player = mccree;</span>
+        this.<span class="cstat-no" title="statement not covered" >controller = new LoaderController(this);</span>
+        this.<span class="cstat-no" title="statement not covered" >controller.init.call(this, mccree);</span>
+    }
+&nbsp;
+    /**
+     * Load source through x-p2p sdk
+     *
+     * @param {String} source - stream url
+     * @param opt - load options
+     */
+    load(<span class="fstat-no" title="function not covered" >source, opt) {</span>
+        if (<span class="cstat-no" title="statement not covered" >!window.qvbp2p) {</span>
+            this.<span class="cstat-no" title="statement not covered" >_initQVBP2P();</span>
+        }
+        if (<span class="cstat-no" title="statement not covered" >!this._onConnected) {</span>
+            this.<span class="cstat-no" title="statement not covered" >controller.onConnected.call(this, {msg: ''}); // TODO</span>
+            this.<span class="cstat-no" title="statement not covered" >_onConnected = true;</span>
+        }
+        window.<span class="cstat-no" title="statement not covered" >qvbp2p.loadSource({videoId: this.config.videoId, src: source});</span>
+        this.<span class="cstat-no" title="statement not covered" >_cleanLoaderBuffer();</span>
+        this.<span class="cstat-no" title="statement not covered" >loadPartail(source, {</span>
+            start: -1,
+            end: -1
+        }, opt);
+    }
+&nbsp;
+    /**
+     * Check and bind
+     *
+     * @param source
+     * @param range
+     * @param opts
+     */
+    loadPartail(<span class="fstat-no" title="function not covered" >source, range, opts) {</span> // partial
+        if (<span class="cstat-no" title="statement not covered" >!this.mccree) {</span>
+            this.<span class="cstat-no" title="statement not covered" >logger.warn(this.TAG, 'Live is not init yet');</span>
+            return;
+        }
+        this.<span class="cstat-no" title="statement not covered" >_bindInterface();</span>
+    }
+&nbsp;
+    /**
+     * Register callback to x-p2p sdk
+     *
+     * @private
+     */
+    _bindInterface() <span class="fstat-no" title="function not covered" >{</span>
+        let <span class="cstat-no" title="statement not covered" >ql = window.qvbp2p,</span>
+            QL = window.QVBP2P;
+        if (<span class="cstat-no" title="statement not covered" >ql &amp;&amp; QL) {</span>
+            ql.<span class="cstat-no" title="statement not covered" >listen(QL.ComEvents.STATE_CHANGE, this._onStateChange.bind(this));</span>
+        } else {
+            this.<span class="cstat-no" title="statement not covered" >observer.trigger('error', this.errorTypes.OtherError, 'No qvbp2p module found'); // TODO</span>
+        }
+    }
+&nbsp;
+    /**
+     * Receive data from x-p2p sdk
+     *
+     * @param {String} event - Event registered to SDK for this function
+     * @param {Object} data - Data that sent from SDK
+     * @private
+     */
+    _onStateChange(<span class="fstat-no" title="function not covered" >event, data) {</span>
+        let <span class="cstat-no" title="statement not covered" >CODE = window.QVBP2P.ComCodes;</span>
+        let <span class="cstat-no" title="statement not covered" >code = data.code;</span>
+        switch (<span class="cstat-no" title="statement not covered" >code) {</span>
+            case CODE.RECEIVE_BUFFER:
+                this.<span class="cstat-no" title="statement not covered" >_receiveBuffer(data);</span>
+                break;
+            case CODE.HTTP_STATUS_CODE_INVALID:
+                break;
+            case CODE.BUFFER_EOF:
+                break;
+            default:
+                break;
+        }
+    }
+&nbsp;
+    /**
+     * Receive media data
+     *
+     * @param {Object} data - object contains media data
+     * @param {ArrayBuffer} data.payload - media data
+     * @private
+     */
+    _receiveBuffer(<span class="fstat-no" title="function not covered" >data) {</span>
+        if (<span class="cstat-no" title="statement not covered" >data.payload instanceof ArrayBuffer) {</span>
+            this.<span class="cstat-no" title="statement not covered" >mccree.loaderBuffer.push(new Uint8Array(data.payload));</span>
+            this.<span class="cstat-no" title="statement not covered" >observer.trigger(this.events.FRAG_LOADED, data.payload.byteLength);</span>
+        } else {
+            let <span class="cstat-no" title="statement not covered" >errInfo = {</span>
+                code: -1,
+                msg: `${this.TAG} receive buffer is not instanceof ArrayBuffer`
+            };
+            this.<span class="cstat-no" title="statement not covered" >observer.trigger('error', this.errorTypes.NETWORK_ERROR, errInfo.msg);</span>
+        }
+    }
+&nbsp;
+    /**
+     * Unload this loader. Release the x-p2p SDK instance.
+     *
+     * @returns {Promise}
+     */
+    unload() <span class="fstat-no" title="function not covered" >{</span>
+        let <span class="cstat-no" title="statement not covered" >that = this;</span>
+        return <span class="cstat-no" title="statement not covered" >new Promise(<span class="fstat-no" title="function not covered" >(resolve, reject) =&gt; {</span></span>
+            // that._loading = false;
+            that.<span class="cstat-no" title="statement not covered" >_cleanLoaderBuffer();</span>
+            if (<span class="cstat-no" title="statement not covered" >window.qvbp2p) {</span>
+                window.<span class="cstat-no" title="statement not covered" >qvbp2p.destroy();</span>
+                window.<span class="cstat-no" title="statement not covered" >qvbp2p = null;</span>
+                let <span class="cstat-no" title="statement not covered" >errInfo = {</span>
+                    code: -1,
+                    msg: `${this.TAG} is destroyed`
+                };
+                that.<span class="cstat-no" title="statement not covered" >observer.trigger('error', that.errorTypes.NETWORK_ERROR, errInfo.msg);</span>
+            }
+            resolve();
+        });
+    }
+&nbsp;
+    /**
+     * Clear loader buffer
+     *
+     * @private
+     */
+    _cleanLoaderBuffer() <span class="fstat-no" title="function not covered" >{</span>
+        this.<span class="cstat-no" title="statement not covered" >mccree.loaderBuffer.clear();</span>
+    }
+}
+<span class="cstat-no" title="statement not covered" >window.QVBP2PLoader = QVBP2PLoader;</span>
+export default <span class="cstat-no" title="statement not covered" >QVBP2PLoader;</span></pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Aug 23 2018 21:39:15 GMT+0800 (CST)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
