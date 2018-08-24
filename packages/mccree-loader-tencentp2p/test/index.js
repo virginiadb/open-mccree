@@ -4,14 +4,18 @@ const txp2p = require('../src/index.js').default;
 const expect = chai.expect;
 describe('module dependency', function(){
   let MesNum = 0;
+  let tri;
   let logMsg = '';
   let funArr = [];
   let triMes = '';
   let opened = false;
-  let config = {};
+  let config = {
+    rollback: function(){}
+  };
   let Mccree = {
     observer: {
       trigger:  function(e, m, d) {
+        tri = m;
         triMes = d;
       },
       on:  function() {},
@@ -36,154 +40,203 @@ describe('module dependency', function(){
     },
     getMediaElement: function(){}
   };
-  window.QVBP2P = {
-    isSupported: function(){
-      return true;
-    }
-  };
+  window.QVBP2P = function(){
+    return function(){
+      this.isSupported = function(){return true};
+      this.loadSource = function(obj){};
+      this.destroy = function(){};
+      this.loadSource = function(obj){};
+      this.listen = function(opt, fun){
+        fun('event', {code:'1'});
+        fun('event', {code:'2'});
+        fun('event', {code:'3'});
+        fun('event', {code:'4'});
+        fun('event', {code:'5'});
+      };
+    };
+  }();
   window.qvbp2p = {
-    supportLoader: true
-  };
-  
+    supportLoader: true,
+    destroy: function(){}
+  }
+
   describe('isSupported', function(){
-    it('isSupported', function(){
+    it('qvbp2p Supported', function(){
       expect(txp2p.isSupported()).to.be.equal(true);
+    });
+    
+    it('QVBP2P Supported', function(){
+      window.qvbp2p = null;
+      window.QVBP2P = {
+        isSupported: function(){return true}
+      };
+      expect(txp2p.isSupported()).to.be.equal(true);
+    });
+    
+    it('not Supported', function(){
+      window.qvbp2p = null;
+      window.QVBP2P = null;
+      expect(txp2p.isSupported()).to.be.equal(false);
     });
   });
 
-/*   describe('constructor check', function(){
+  describe('constructor check', function(){
     it('constructor is a class', function(){
-      expect(xyp2p).to.be.a('function');
-      expect(xyp2p.prototype).to.be.a('Object');
+      expect(txp2p).to.be.a('function');
+      expect(txp2p.prototype).to.be.a('Object');
     })
   });
 
   describe('module construction', function(){
     it('with config', function() {
-      try {
-        xyp2p(config);
-      } catch (e) {
-        expect(e.message).not.to.be.null;
-      }
+      window.QVBP2P = function(){
+        return function(){
+          this.isSupported = function(){return true};
+          this.loadSource = function(obj){};
+        }
+      }();
+      let tx = new txp2p(config);
     });
     it('without config', function() {
-      try {
-        xyp2p();
-      } catch (e) {
-        expect(e.message).not.to.be.null;
-      }
+      window.QVBP2P = function(){
+        return function(){
+          this.isSupported = function(){return true};
+          this.loadSource = function(obj){};
+        }
+      }();
+      let tx = new txp2p();
+    });
+    it('without qvbp2p', function() {
+      window.QVBP2P = function(){
+        return function(){
+          this.isSupported = function(){return true};
+          this.loadSource = function(obj){};
+        }
+      }();
+      window.qvbp2p = null;
+      let tx = new txp2p(config);
     });
   });
 
-  let xy = new xyp2p(config);
+  let tx = new txp2p(config);
   describe('module init', function(){
     it('init without Mccree', function(){
-      try {
-        xy.init();
-      } catch(e) {
-        expect(xy.mccree).to.be.undefined;
-      }
+      tx.init(); 
     });
     it('init with Mccree', function(){
-      xy.init(Mccree);
-      expect(xy).to.be.a('Object');
-      expect(xy.controller).to.be.a('Object');
-      expect(xy.events).to.be.a('Object');
-      expect(xy.events.XY_ERROR).to.be.equal('xy error');
-      expect(xy.events.FLV_DATA).to.be.equal('flv data');
+      window.qvbp2p = {};
+      tx.init(Mccree);
+      expect(tx).to.be.a('Object');
+      expect(tx.controller).to.be.a('Object');
+      expect(window.qvbp2p.player).to.be.a('Object');
     });
   });
   
+  tx.init(Mccree);
   describe('load', function(){
-    it('load test', function(){
-      xy.load('source', 'opt', 'range');
-      expect(xy.xyLive).to.be.a('Object');
-      expect(opened).to.be.equal(true);
-      expect(MesNum).to.be.equal(2);
+    it('init', function(){
+      window.QVBP2P = function(){
+        return function(){
+          this.isSupported = function(){return true};
+          this.loadSource = function(obj){};
+          this.destroy = function(){};
+          this.loadSource = function(obj){};
+          this.listen = function(opt, fun){
+            fun('event', {code:'2'});
+            fun('event', {code:'3'});
+            fun('event', {code:'4'});
+            fun('event', {code:'5'});
+          };
+        };
+      }();
+      window.QVBP2P.ComEvents = {
+        STATE_CHANGE: '1',
+      };
+      window.QVBP2P.ComCodes = {
+        RECEIVE_BUFFER: '2',
+        HTTP_STATUS_CODE_INVALID: '3',
+        BUFFER_EOF: '4'
+      };
+      window.qvbp2p = null;
+      tx._onConnected = false;
+      tx.load('source', {});
     });
   });
   
-  describe('destory', function(){
-    it('destory test', function(){
-      xy.destory();
-      expect(opened).to.be.equal(false);
+  describe('loadPartail without mccree', function(){
+    it('loadPartail without mccree',function(){
+      tx.mccree = null;
+      tx.loadPartail();
+      expect(logMsg).to.be.equal('Live is not init yet');
+    });
+  });
+  
+  describe('bindInterface without qvbp2p either QVBP2P', function(){
+    it('bindInterface without qvbp2p either QVBP2P', function(){
+      window.QVBP2P = null;
+      tx._bindInterface();
+      expect(triMes).to.be.equal('No qvbp2p module found');
     });
   });
   
   describe('unload', function(){
-    it('unload test', function(){
-      xy.unload();
-      expect(opened).to.be.equal(false);
-      expect(triMes).to.be.equal('unload');
+    it('unload', function(){
+      tx.mccree = {
+        observer: {
+          trigger:  function(e, m, d) {
+            triMes = d;
+          },
+          on:  function() {},
+          off:  function() {}
+        },
+        events:{
+          events: {},
+          errorTypes: {},
+          errorDetails: {},
+          logMsgs: {}
+        },
+        logger: {
+          debug: function(t,m) { logMsg = m; },
+          log:function(t,m) { logMsg = m; },
+          error: function(t,m) { logMsg = m; },
+          info: function(t,m) { logMsg = m; },
+          warn: function(t,m) { logMsg = m; }
+        },
+        loaderBuffer: {
+          push: function(data) {},
+          clear: function() {}
+        },
+        getMediaElement: function(){}
+      };
+      window.qvbp2p.destroy = function(){};
+      tx.unload.call(tx);
+      expect(triMes).to.be.equal('Mccree-loader-tencentp2p is destroyed');
     });
   });
   
-  describe('loadPartail', function(){      
-      describe('delay', function(){
-        it('delay', function(done){
-          setTimeout(function(){
-            done()
-          }, 1500);
-        });
-      });
-    });
-    
-    describe('404', function(){
-      it('loadPartail with 404 resource', function(done){
-        try{
-          xy.loadPartail('https://pl-p2p3.live.panda.tv/conf/pandaTV/pl4.live.panda.tv/live_panda/fc3ff8fa6b4e4dc6ef86c2a9c0c33250_3000/html5?ctmId=cGFuZGFUVg==&surl=aHR0cHM6Ly9wbDQubGl2ZS5wYW5kYS50di9saXZlX3BhbmRhL2ZjM2ZmOGZhNmI0ZTRkYzZlZjg2YzJhOWMwYzMzMjUwXzMwMDAuZmx2&wsSecret=af855a5003ed5b25c0bf5581e74fc1e2&wsTime=5b7e8f8d', 'range', 'opts');
-          expect(xy.xhr).to.be.a('XMLHttpRequest');
-          setTimeout(function(){
-            expect(xy.xhr.status).to.be.equal(404);
-            xy.xhr.onprogress = null;
-            xy.xhr.onreadystatechange = null;
-            done();
-          },1500);
-        }catch(e){
-          expect(e).not.to.be.undefined;
+  describe('initQVBP2P with player', function(){
+    it('initQVBP2P with player', function(){
+      window.QVBP2P = function(){
+        return function(){
+          this.isSupported = function(){return true};
+          this.loadSource = function(obj){};
+          this.destroy = function(){};
         }
-      });
-      
-      describe('delay', function(){
-        it('delay', function(done){
-          setTimeout(function(){
-            done()
-          }, 1500);
-        });
-      });
+      }();
+      tx.player = Mccree;
+      tx._initQVBP2P.call(tx);
+      expect(window.qvbp2p.player).to.be.a('object')
     });
-    
-    describe('200', function(){
-      it('loadPartail with 200 resource', function(done){
-        try{
-          xy.loadPartail('https://s.h2.pdim.gs/static/686fb8fbbbd6adba/ruc_v2.1.6.css', 'range', 'opts');
-          expect(xy.xhr).to.be.a('XMLHttpRequest');
-          setTimeout(function(){
-            expect(xy.xhr.status).to.be.equal(200);
-            xy.xhr.onprogress = null;
-            xy.xhr.onreadystatechange = null;
-            done();
-          },1500);
-        }catch(e){
-          expect(e).not.to.be.undefined;
-        }
-      });
-      
-      describe('delay', function(){
-        it('delay', function(done){
-          setTimeout(function(){
-            done()
-          }, 1500);
-        });
-      });
+  });
+  
+  describe('receive right data', function(){
+    it('receive right data', function(){
+      let payload = new ArrayBuffer(2);
+      let data = {
+        payload: payload
+      };
+      tx._receiveBuffer(data);
+      expect(tri).to.be.equal(2);
     });
-    
-    describe('without mccree', function(){
-      it('loadPartail without mccree', function(){
-        xy.mccree = null;
-        xy.loadPartail('https://www.baidu.com/', 'range', 'opts');
-        expect(logMsg).to.be.equal('Live is not init yet');
-      });
-    });
-  }); */
+  });
 });
