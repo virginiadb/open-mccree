@@ -1,7 +1,9 @@
 import LoaderController from 'mccree-controller-loader';
 
 class MozXhrLoader {
-  static isSupported() {}
+  static isSupported() {
+    return true;
+  }
 
   constructor(config) {
     this.TAG = 'Mccree-loader-moz-xhr';
