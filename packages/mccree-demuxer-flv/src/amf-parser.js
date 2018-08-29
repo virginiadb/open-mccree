@@ -7,22 +7,17 @@ class AmfParser {
 
   parseMetadata() {
     let metadata = {};
-    try {
-      let scriptData = this.parseAMF();
-      for(let i = 0; i < scriptData.length - 1; i++) {
-        if(typeof scriptData[i] === 'string' && scriptData[i] === 'onMetaData' && typeof scriptData[i + 1] === 'object') {
-          metadata = scriptData[i + 1];
-        }
+    let scriptData = this.parseAMF();
+    for(let i = 0; i < scriptData.length - 1; i++) {
+      if(typeof scriptData[i] === 'string' && scriptData[i] === 'onMetaData' && typeof scriptData[i + 1] === 'object') {
+        metadata = scriptData[i + 1];
       }
-    } catch(e) {
-      // TODO: 异常处理
     }
     return metadata;
   }
 
   parseAMF() {
     let result = [];
-
     // find on metadata 
     while (this.offset < this.data.length) {
       let type = this.data[this.offset];
@@ -32,6 +27,7 @@ class AmfParser {
     }
     return result;
   }
+  
   // TODO: implement XML etc.
   _switchAmfType(type) {
     let value = null;
@@ -70,7 +66,11 @@ class AmfParser {
   _parseNum() {
     let numData = this.data.slice(this.offset, this.offset + 8);
     this.offset += 8;
-    return new DataView(numData.buffer).getFloat64(0);
+    let buffer = new ArrayBuffer(numData.length);
+    for(var i = 0;i < numData.length;i++){
+      buffer[i] = numData[i];
+    }
+    return new DataView(buffer).getFloat64(0);
   }
 
   _parseString() {
@@ -79,7 +79,7 @@ class AmfParser {
     this.offset += 2;
     let stringData = this.data.slice(this.offset, this.offset + length);
     this.offset += length;
-    let string = new TextDecoder("utf-8").decode(stringData);
+    let string = this._decodeUtf8(stringData);
     return string;
   }
   
@@ -97,8 +97,6 @@ class AmfParser {
   }
 
   _parseECMAArrary() {
-    // let lengthData = this.data.slice(this.offset, this.offset + 4);
-    // let length = new DataView(lengthData.buffer).getUint32(0);
     this.offset += 4;
     return this._parseObject();
   }
@@ -106,6 +104,14 @@ class AmfParser {
   _parseBoolean() {
     this.offset++;
     return !(this.data[0] === 0x00);
+  }
+  
+  _decodeUtf8(bytes) {
+    var encoded = "";
+    for (var i = 0; i < bytes.length; i++) {
+      encoded += '%' + bytes[i].toString(16);
+    }
+    return decodeURIComponent(encoded);
   }
 }
 
