@@ -1,0 +1,1791 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/index.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">src/</a> index.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">7.67% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>25/326</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">1.83% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>3/164</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">9.52% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>2/21</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">7.67% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>25/326</span>
+      </div>
+      <div class='fl pad1y'>
+        <span class="strong">2 branches</span>
+        <span class="quiet">Ignored</span>  &nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+import { AudioTrack, VideoTrack } from 'mccree-core-track';
+import SPSParser from 'mccree-helper-spsparser';
+import defaultVideoConfig from './default-video-config.js';
+import defaultAudioConfig from './default-audio-config.js';
+import AmfParser from './amf-parser.js';
+&nbsp;
+class FLVDemuxer {
+  /**
+   * Constructor
+   */
+  constructor(config) {
+    this.TAG = 'mccree-demuxer-flv:index';
+    this.type = 'demuxer';
+    this._isFlv = false;
+    t</span>his._config = config || <span class="branch-1 cbranch-no" title="branch not covered" >{};
+    this._firstFragLoaded = false;
+    this._hasScript = false;
+    this._hasAudioSequence = false;
+    this._hasVideoSequence = false;
+    this._tracknum = 0;
+  }
+&nbsp;
+  reset() <span class="fstat-no" title="function not covered" >{</span>
+    this.<span class="cstat-no" title="statement not covered" >_isReseting = true;</span>
+    this.<span class="cstat-no" title="statement not covered" >_isFlv = false;</span>
+    this.<span class="cstat-no" title="statement not covered" >_firstFragLoaded = false;</span>
+    this.<span class="cstat-no" title="statement not covered" >_hasScript = false;</span>
+    this.<span class="cstat-no" title="statement not covered" >_hasAudioSequence = false;</span>
+    this.<span class="cstat-no" title="statement not covered" >_hasVideoSequence = false;</span>
+    this.<span class="cstat-no" title="statement not covered" >_tracknum = 0;</span>
+  }
+&nbsp;
+  /**
+   * Initailize the demux module.
+   */
+  init(mccree) {
+    this.mccree = mccree;
+    this.logger = mccree.logger;
+    this.observer = mccree.observer;
+    this.events = mccree.events.events;
+    this.errorTypes = mccree.events.errorTypes;
+    this.errorDetails = mccree.events.errorDetails;
+    this.logMsgs = mccree.events.logMsgs;
+    this.observer.on(this.events.FRAG_LOADED, this._fragLoaded.bind(this));
+  }
+&nbsp;
+  /**
+   * Analyse and appand data when the fragment data is arrival.
+   */
+  _fragLoaded() <span class="fstat-no" title="function not covered" >{</span>
+    if (<span class="cstat-no" title="statement not covered" >!this._firstFragLoaded) {</span>
+      if (<span class="cstat-no" title="statement not covered" >this.mccree.loaderBuffer.length &lt; 13) {</span>
+        return;
+      }
+      let <span class="cstat-no" title="statement not covered" >playType = this._config.playType;</span>
+      let <span class="cstat-no" title="statement not covered" >data = this.mccree.loaderBuffer.shift(13);</span>
+      this.<span class="cstat-no" title="statement not covered" >_parseFlvHeader(data, playType);</span>
+      this.<span class="cstat-no" title="statement not covered" >_fragLoaded();</span>
+    } else {
+      if (<span class="cstat-no" title="statement not covered" >this.mccree.loaderBuffer.length &lt; 11) {</span>
+        return;
+      }
+      var <span class="cstat-no" title="statement not covered" >chunk = this._parseFlvTag();</span>
+      if (<span class="cstat-no" title="statement not covered" >chunk) {</span>
+        if (<span class="cstat-no" title="statement not covered" >chunk !== -1) {</span>
+          this.<span class="cstat-no" title="statement not covered" >logger.error(this.TAG, 'chunk error');</span>
+        }
+        this.<span class="cstat-no" title="statement not covered" >_fragLoaded();</span>
+      }
+    }
+  }
+&nbsp;
+  /**
+   * Parse the flv header.
+   */
+  _parseFlvHeader(<span class="fstat-no" title="function not covered" >data, playType) {</span>
+    let <span class="cstat-no" title="statement not covered" >offset = 0;</span>
+    if (<span class="cstat-no" title="statement not covered" >data[0] !== 0x46 || data[1] !== 0x4C || data[2] !== 0x56 || data[3] !== 0x01) {</span>
+      this.<span class="cstat-no" title="statement not covered" >observer.trigger(this.events.demux.DEMUXER_MISSMATCH, data);</span>
+      this.<span class="cstat-no" title="statement not covered" >_fragLoaded();</span>
+    } else {
+      this.<span class="cstat-no" title="statement not covered" >_firstFragLoaded = true;</span>
+      offset += <span class="cstat-no" title="statement not covered" >4;</span>
+      let <span class="cstat-no" title="statement not covered" >trackInfo = this._switchPlayType(data[offset], playType);</span>
+      if (<span class="cstat-no" title="statement not covered" >trackInfo &amp; 0x01 &gt; 0) {</span>
+        this.<span class="cstat-no" title="statement not covered" >_tracknum++;</span>
+        let <span class="cstat-no" title="statement not covered" >videoTrack = new VideoTrack();</span>
+        this.<span class="cstat-no" title="statement not covered" >mccree.media.tracks.videoTrack = videoTrack;</span>
+        this.<span class="cstat-no" title="statement not covered" >_setDefaultVideoConfig();</span>
+      }
+&nbsp;
+      if (<span class="cstat-no" title="statement not covered" >trackInfo &amp; 0x04 &gt; 0) {</span>
+        this.<span class="cstat-no" title="statement not covered" >_tracknum++;</span>
+        let <span class="cstat-no" title="statement not covered" >audioTrack = new AudioTrack();</span>
+        this.<span class="cstat-no" title="statement not covered" >mccree.media.tracks.audioTrack = audioTrack;</span>
+        this.<span class="cstat-no" title="statement not covered" >_setDefaultAudioConfig();</span>
+      }
+      this.<span class="cstat-no" title="statement not covered" >_fragLoaded();</span>
+    }
+  }
+&nbsp;
+  /**
+   * If the stream has audio or video. 
+   * @param {numeber} streamFlag - Data from the stream which is define whether the audio / video track is exist. 
+   * @param {String} playType - Defined by the customer. Optional. 
+   */
+  _switchPlayType(<span class="fstat-no" title="function not covered" >streamFlag, playType) {</span>
+    let <span class="cstat-no" title="statement not covered" >trackInfo = 0x05;</span>
+    switch (<span class="cstat-no" title="statement not covered" >playType) {</span>
+      case 'audio':
+        trackInfo = <span class="cstat-no" title="statement not covered" >0x04;</span>
+        break;
+      case 'video':
+        trackInfo = <span class="cstat-no" title="statement not covered" >0x05;</span>
+        break;
+      default:
+        streamFlag ? (<span class="cstat-no" title="statement not covered" >trackInfo = streamFlag) : (trackInfo = 0x05);</span>
+        break;
+    }
+    return <span class="cstat-no" title="statement not covered" >trackInfo;</span>
+  }
+&nbsp;
+  /** 
+   * Set the default video configurations. 
+   */
+  _setDefaultVideoConfig() <span class="fstat-no" title="function not covered" >{</span>
+    let <span class="cstat-no" title="statement not covered" >videoTrack = this.mccree.media.tracks.videoTrack;</span>
+    videoTrack.<span class="cstat-no" title="statement not covered" >meta = defaultVideoConfig;</span>
+    videoTrack.<span class="cstat-no" title="statement not covered" >id = videoTrack.meta.id = this._tracknum;</span>
+  }
+&nbsp;
+  /** 
+   * Set the default video configurations. 
+   */
+  _setDefaultAudioConfig() <span class="fstat-no" title="function not covered" >{</span>
+    let <span class="cstat-no" title="statement not covered" >audioTrack = this.mccree.media.tracks.audioTrack;</span>
+    audioTrack.<span class="cstat-no" title="statement not covered" >meta = defaultAudioConfig;</span>
+    audioTrack.<span class="cstat-no" title="statement not covered" >id = audioTrack.meta.id = this._tracknum;</span>
+  }
+&nbsp;
+  /**
+   * Package the data as the following data structure
+   * {
+   *    data: Uint8Array. the Stream data.
+   *    info: The first byte info of the Tag.
+   *    tagType: 8、9、18
+   *    timeStamp: the timestemp;
+   * }
+   */
+  _parseFlvTag() <span class="fstat-no" title="function not covered" >{</span>
+    if (<span class="cstat-no" title="statement not covered" >this.mccree.loaderBuffer.length &lt; 11) {</span>
+      return <span class="cstat-no" title="statement not covered" >null;</span>
+    }
+    let <span class="cstat-no" title="statement not covered" >chunk = this._parseFlvTagHeader();</span>
+    if (<span class="cstat-no" title="statement not covered" >chunk) {</span>
+      this.<span class="cstat-no" title="statement not covered" >_processChunk(chunk);</span>
+    }
+  }
+&nbsp;
+  /** 
+   * Parse the 11 byte tag Header
+   */
+  _parseFlvTagHeader() <span class="fstat-no" title="function not covered" >{</span>
+    let <span class="cstat-no" title="statement not covered" >chunk = {};</span>
+    let <span class="cstat-no" title="statement not covered" >tagType = this.mccree.loaderBuffer.toInt(0, 1);</span>
+&nbsp;
+    // 2 bit FMS reserved, 1 bit filtered, 5 bit tag type
+    chunk.<span class="cstat-no" title="statement not covered" >filtered = (tagType &amp; 32) &gt;&gt;&gt; 5;</span>
+    chunk.<span class="cstat-no" title="statement not covered" >tagType = tagType &amp; 31;</span>
+&nbsp;
+    // 3 Byte datasize
+    chunk.<span class="cstat-no" title="statement not covered" >datasize = this.mccree.loaderBuffer.toInt(1, 3);</span>
+    if ((<span class="cstat-no" title="statement not covered" >chunk.tagType !== 8 &amp;&amp; chunk.tagType !== 9 &amp;&amp; chunk.tagType !== 11 &amp;&amp; chunk.tagType !== 18)</span>
+      || this.mccree.loaderBuffer.toInt(8, 3) !== 0) {
+      if (<span class="cstat-no" title="statement not covered" >this.loaderBuffer &amp;&amp; this.loaderBuffer.length &gt; 0) {</span>
+        this.<span class="cstat-no" title="statement not covered" >loaderBuffer.shift(1);</span>
+      }
+      this.<span class="cstat-no" title="statement not covered" >logger.warn(this.TAG, 'tagType ' + chunk.tagType);</span>
+      return <span class="cstat-no" title="statement not covered" >null;</span>
+    }
+&nbsp;
+    if (<span class="cstat-no" title="statement not covered" >this.mccree.loaderBuffer.length &lt; chunk.datasize + 15) {</span>
+      return <span class="cstat-no" title="statement not covered" >null;</span>
+    }
+&nbsp;
+    // read the data.
+    this.<span class="cstat-no" title="statement not covered" >mccree.loaderBuffer.shift(4);</span>
+&nbsp;
+    // 3 Byte timestamp
+    let <span class="cstat-no" title="statement not covered" >timestamp = this.mccree.loaderBuffer.toInt(0, 3);</span>
+    this.<span class="cstat-no" title="statement not covered" >mccree.loaderBuffer.shift(3);</span>
+&nbsp;
+    // 1 Byte timestampExt
+    let <span class="cstat-no" title="statement not covered" >timestampExt = this.mccree.loaderBuffer.shift(1)[0];</span>
+    if (<span class="cstat-no" title="statement not covered" >timestampExt &gt; 0) {</span>
+      timestamp += <span class="cstat-no" title="statement not covered" >timestampExt * 0x1000000;</span>
+    }
+&nbsp;
+    chunk.<span class="cstat-no" title="statement not covered" >timestamp = timestamp;</span>
+&nbsp;
+    // streamId 
+    this.<span class="cstat-no" title="statement not covered" >mccree.loaderBuffer.shift(3);</span>
+    return <span class="cstat-no" title="statement not covered" >chunk;</span>
+  }
+&nbsp;
+  _processChunk(<span class="fstat-no" title="function not covered" >chunk) {</span>
+    switch (<span class="cstat-no" title="statement not covered" >chunk.tagType) {</span>
+      case 18:
+        this.<span class="cstat-no" title="statement not covered" >_parseScriptData(chunk);</span>
+        break;
+      case 8:
+        this.<span class="cstat-no" title="statement not covered" >_parseAACData(chunk);</span>
+        break;
+      case 9:
+        this.<span class="cstat-no" title="statement not covered" >_parseHevcData(chunk);</span>
+        break;
+      case 11:
+        // for some CDN that did not process the currect RTMP messages
+        this.<span class="cstat-no" title="statement not covered" >mccree.loaderBuffer.shift(3);</span>
+        break;
+      default:
+        this.<span class="cstat-no" title="statement not covered" >mccree.loaderBuffer.shift(1);</span>
+        break;
+    }
+    this.<span class="cstat-no" title="statement not covered" >_fragLoaded();</span>
+  }
+&nbsp;
+  _clearBuffer() <span class="fstat-no" title="function not covered" >{</span>
+    this.<span class="cstat-no" title="statement not covered" >logger.debug(this.TAG, 'Cache clear');</span>
+  }
+&nbsp;
+  _parseScriptData(<span class="fstat-no" title="function not covered" >chunk) {</span>
+    let <span class="cstat-no" title="statement not covered" >audioTrack = this.mccree.media.tracks.audioTrack;</span>
+    let <span class="cstat-no" title="statement not covered" >videoTrack = this.mccree.media.tracks.videoTrack;</span>
+&nbsp;
+    let <span class="cstat-no" title="statement not covered" >data = this.mccree.loaderBuffer.shift(chunk.datasize);</span>
+    let <span class="cstat-no" title="statement not covered" >mediaInfo = this.mccree.media.mediaInfo = new AmfParser(data).parseMetadata();</span>
+    let <span class="cstat-no" title="statement not covered" >validate = this._datasizeValidator(chunk.datasize);</span>
+    if (<span class="cstat-no" title="statement not covered" >validate) {</span>
+      this.<span class="cstat-no" title="statement not covered" >_hasScript = true;</span>
+    }
+&nbsp;
+    // Edit default meta.
+    if (<span class="cstat-no" title="statement not covered" >audioTrack &amp;&amp; !audioTrack.hasSpecificConfig) {</span>
+      let <span class="cstat-no" title="statement not covered" >meta = audioTrack.meta;</span>
+      if (<span class="cstat-no" title="statement not covered" >mediaInfo.audiosamplerate) {</span>
+        meta.<span class="cstat-no" title="statement not covered" >audioSampleRate = mediaInfo.audiosamplerate;</span>
+      }
+&nbsp;
+      if (<span class="cstat-no" title="statement not covered" >mediaInfo.audiochannels) {</span>
+        meta.<span class="cstat-no" title="statement not covered" >channelCount = mediaInfo.audiochannels;</span>
+      }
+&nbsp;
+      switch (<span class="cstat-no" title="statement not covered" >mediaInfo.audiosamplerate) {</span>
+        case 44100:
+          meta.<span class="cstat-no" title="statement not covered" >sampleRateIndex = 4;</span>
+          break;
+        case 22050:
+          meta.<span class="cstat-no" title="statement not covered" >sampleRateIndex = 7;</span>
+          break;
+        case 11025:
+          meta.<span class="cstat-no" title="statement not covered" >sampleRateIndex = 10;</span>
+          break;
+      }
+    }
+    if (<span class="cstat-no" title="statement not covered" >videoTrack &amp;&amp; !videoTrack.hasSpecificConfig) {</span>
+      let <span class="cstat-no" title="statement not covered" >meta = videoTrack.meta;</span>
+      if (<span class="cstat-no" title="statement not covered" >typeof mediaInfo.framerate === 'number') {</span>
+        let <span class="cstat-no" title="statement not covered" >fps_num = Math.floor(mediaInfo.framerate * 1000);</span>
+        if (<span class="cstat-no" title="statement not covered" >fps_num &gt; 0) {</span>
+          let <span class="cstat-no" title="statement not covered" >fps = fps_num / 1000;</span>
+          if (<span class="cstat-no" title="statement not covered" >!meta.frameRate) {</span>
+            meta.<span class="cstat-no" title="statement not covered" >frameRate = {};</span>
+          }
+          meta.<span class="cstat-no" title="statement not covered" >frameRate.fixed = true;</span>
+          meta.<span class="cstat-no" title="statement not covered" >frameRate.fps = fps;</span>
+          meta.<span class="cstat-no" title="statement not covered" >frameRate.fps_num = fps_num;</span>
+          meta.<span class="cstat-no" title="statement not covered" >frameRate.fps_den = 1000;</span>
+        }
+      }
+    }
+  }
+&nbsp;
+  _parseAACData(<span class="fstat-no" title="function not covered" >chunk) {</span>
+    let <span class="cstat-no" title="statement not covered" >track = this.mccree.media.tracks.audioTrack;</span>
+    if (<span class="cstat-no" title="statement not covered" >!track) {</span>
+      return;
+    }
+&nbsp;
+    let <span class="cstat-no" title="statement not covered" >meta = track.meta;</span>
+&nbsp;
+    if (<span class="cstat-no" title="statement not covered" >!meta) {</span>
+      meta = <span class="cstat-no" title="statement not covered" >defaultAudioConfig;</span>
+    }
+&nbsp;
+    let <span class="cstat-no" title="statement not covered" >info = this.mccree.loaderBuffer.shift(1)[0];</span>
+&nbsp;
+    chunk.<span class="cstat-no" title="statement not covered" >data = this.mccree.loaderBuffer.shift(chunk.datasize - 1);</span>
+&nbsp;
+    let <span class="cstat-no" title="statement not covered" >format = (info &amp; 240) &gt;&gt;&gt; 4;</span>
+&nbsp;
+    track.<span class="cstat-no" title="statement not covered" >format = format;</span>
+&nbsp;
+    if (<span class="cstat-no" title="statement not covered" >format !== 10) {</span>
+      this.<span class="cstat-no" title="statement not covered" >observer.trigger('error', this.mccree.events.MEDIA_ERROR, {});</span>
+    }
+&nbsp;
+    if (<span class="cstat-no" title="statement not covered" >format === 10 &amp;&amp; !this._hasAudioSequence) {</span>
+      meta.<span class="cstat-no" title="statement not covered" >audioSampleRate = this._switchAudioSamplingFrequency(info);</span>
+      meta.<span class="cstat-no" title="statement not covered" >sampleRateIndex = (info &amp; 12) &gt;&gt;&gt; 2;</span>
+      meta.<span class="cstat-no" title="statement not covered" >frameLenth = (info &amp; 2) &gt;&gt;&gt; 1;</span>
+      meta.<span class="cstat-no" title="statement not covered" >channelCount = info &amp; 1;</span>
+      meta.<span class="cstat-no" title="statement not covered" >refSampleDuration = Math.floor(1024 / meta.audioSampleRate * meta.timescale);</span>
+    }
+&nbsp;
+    let <span class="cstat-no" title="statement not covered" >audioSampleRate = meta.audioSampleRate;</span>
+    let <span class="cstat-no" title="statement not covered" >audioSampleRateIndex = meta.sampleRateIndex;</span>
+    let <span class="cstat-no" title="statement not covered" >refSampleDuration = meta.refSampleDuration;</span>
+&nbsp;
+    delete <span class="cstat-no" title="statement not covered" >chunk.tagType;</span>
+    let <span class="cstat-no" title="statement not covered" >validate = this._datasizeValidator(chunk.datasize);</span>
+&nbsp;
+    if (<span class="cstat-no" title="statement not covered" >chunk.data[0] === 0) {</span>
+      let <span class="cstat-no" title="statement not covered" >ret = this._aacSequenceHeaderParser(chunk.data);</span>
+      audioSampleRate = <span class="cstat-no" title="statement not covered" >ret.audiosamplerate || meta.audioSampleRate;</span>
+      audioSampleRateIndex = <span class="cstat-no" title="statement not covered" >ret.sampleRateIndex || meta.sampleRateIndex;</span>
+      refSampleDuration = <span class="cstat-no" title="statement not covered" >Math.floor(1024 / audioSampleRate * meta.timescale);</span>
+      meta.<span class="cstat-no" title="statement not covered" >channelCount = ret.channelCount;</span>
+      meta.<span class="cstat-no" title="statement not covered" >audioSampleRate = audioSampleRate;</span>
+      meta.<span class="cstat-no" title="statement not covered" >sampleRateIndex = audioSampleRateIndex;</span>
+      meta.<span class="cstat-no" title="statement not covered" >refSampleDuration = refSampleDuration;</span>
+      if (<span class="cstat-no" title="statement not covered" >this._hasScript &amp;&amp; !this._hasAudioSequence &amp;&amp; (!this.mccree.media.tracks.videoTrack || this._hasVideoSequence)) {</span>
+        this.<span class="cstat-no" title="statement not covered" >observer.trigger('METADATA_PARSED');</span>
+      } else <span class="cstat-no" title="statement not covered" >if (this._hasScript &amp;&amp; this._hasAudioSequence) {</span>
+        this.<span class="cstat-no" title="statement not covered" >observer.trigger('METADATA_CHANGED');</span>
+      }
+      ;
+      this.<span class="cstat-no" title="statement not covered" >_hasAudioSequence = true;</span>
+    } else {
+      chunk.<span class="cstat-no" title="statement not covered" >data = chunk.data.slice(1, chunk.data.length);</span>
+      this.<span class="cstat-no" title="statement not covered" >observer.trigger('AUDIODATA_PARSED');</span>
+      track.<span class="cstat-no" title="statement not covered" >samples.push(chunk);</span>
+    }
+&nbsp;
+    if (<span class="cstat-no" title="statement not covered" >!validate) {</span>
+      this.<span class="cstat-no" title="statement not covered" >logger.warn(this.TAG, 'TAG length error at ' + chunk.datasize);</span>
+    }
+  }
+&nbsp;
+_parseHevcData(<span class="fstat-no" title="function not covered" >chunk) {</span>
+    // header
+    let <span class="cstat-no" title="statement not covered" >info = this.mccree.loaderBuffer.shift(1)[0];</span>
+    chunk.<span class="cstat-no" title="statement not covered" >frameType = (info &amp; 0xf0) &gt;&gt;&gt; 4;</span>
+    let <span class="cstat-no" title="statement not covered" >tempCodecID = this.mccree.media.tracks.videoTrack.codecID;</span>
+    let <span class="cstat-no" title="statement not covered" >codecID = info &amp; 0x0f;</span>
+    this.<span class="cstat-no" title="statement not covered" >mccree.media.tracks.videoTrack.codecID = codecID;</span>
+    
+    //hevc和avc的header解析方式一样
+    chunk.<span class="cstat-no" title="statement not covered" >avcPacketType = this.mccree.loaderBuffer.shift(1)[0];</span>
+    chunk.<span class="cstat-no" title="statement not covered" >compositionTime = this.mccree.loaderBuffer.toInt(0, 3);</span>
+    this.<span class="cstat-no" title="statement not covered" >mccree.loaderBuffer.shift(3);</span>
+    
+    // hevc is 12, avc is 7
+    if (<span class="cstat-no" title="statement not covered" >codecID === 12) {</span>
+      var <span class="cstat-no" title="statement not covered" >data = this.mccree.loaderBuffer.shift(chunk.datasize - 5);</span>
+      chunk.<span class="cstat-no" title="statement not covered" >data = data;</span>
+      
+      if(<span class="cstat-no" title="statement not covered" >chunk.avcPacketType != 0){</span>
+        if (<span class="cstat-no" title="statement not covered" >!this._datasizeValidator(chunk.datasize)) {</span>
+          this.<span class="cstat-no" title="statement not covered" >logger.warn(this.TAG, this.logMsgs.TAG_LENGTH_ERROR + chunk.datasize);</span>
+        }
+        let <span class="cstat-no" title="statement not covered" >nalu = {};</span>
+        let <span class="cstat-no" title="statement not covered" >r = 0;</span>
+        nalu.<span class="cstat-no" title="statement not covered" >compositionTime = chunk.compositionTime;</span>
+        nalu.<span class="cstat-no" title="statement not covered" >timestamp = chunk.timestamp;</span>
+        while(<span class="cstat-no" title="statement not covered" >chunk.data.length &gt; r){</span>
+          let <span class="cstat-no" title="statement not covered" >sizes = chunk.data.slice(0+r,4+r);</span>
+          nalu.<span class="cstat-no" title="statement not covered" >size = sizes[3];</span>
+          nalu.<span class="cstat-no" title="statement not covered" >size += sizes[2] * 256;</span>
+          nalu.<span class="cstat-no" title="statement not covered" >size += sizes[1] * 256 * 256;</span>
+          nalu.<span class="cstat-no" title="statement not covered" >size += sizes[0] * 256 * 256 * 256;</span>
+          r += <span class="cstat-no" title="statement not covered" >4;</span>
+          nalu.<span class="cstat-no" title="statement not covered" >data = chunk.data.slice(0+r,nalu.size+r);</span>
+          r += <span class="cstat-no" title="statement not covered" >nalu.size;</span>
+          this.<span class="cstat-no" title="statement not covered" >mccree.media.tracks.videoTrack.samples.push(nalu);</span>
+          this.<span class="cstat-no" title="statement not covered" >observer.trigger('VIDEO_PARSED');</span>
+        }
+      }else <span class="cstat-no" title="statement not covered" >if(chunk.avcPacketType == 0){</span>
+        if (<span class="cstat-no" title="statement not covered" >!this._datasizeValidator(chunk.datasize)) {</span>
+          this.<span class="cstat-no" title="statement not covered" >logger.warn(this.TAG, this.logMsgs.TAG_LENGTH_ERROR + chunk.datasize);</span>
+        }else{
+          this.<span class="cstat-no" title="statement not covered" >observer.trigger('METADATA_PARSED');</span>
+        }
+      }
+    } else <span class="cstat-no" title="statement not covered" >if(codecID === 7){</span>
+      var <span class="cstat-no" title="statement not covered" >data = this.mccree.loaderBuffer.shift(chunk.datasize - 5);</span>
+      if (<span class="cstat-no" title="statement not covered" >data[4] === 0 &amp;&amp; data[5] === 0 &amp;&amp; data[6] === 0 &amp;&amp; data[7] === 1) {</span>
+        var <span class="cstat-no" title="statement not covered" >avcclength = 0;</span>
+        for (<span class="cstat-no" title="statement not covered" >var i = 0; i &lt; 4; i++) {</span>
+          avcclength = <span class="cstat-no" title="statement not covered" >avcclength * 256 + data[i];</span>
+        }
+        avcclength -= <span class="cstat-no" title="statement not covered" >4;</span>
+        data = <span class="cstat-no" title="statement not covered" >data.slice(4, data.length);</span>
+        data[<span class="cstat-no" title="statement not covered" >3] = avcclength % 256;</span>
+        avcclength = <span class="cstat-no" title="statement not covered" >(avcclength - data[3]) / 256;</span>
+        data[<span class="cstat-no" title="statement not covered" >2] = avcclength % 256;</span>
+        avcclength = <span class="cstat-no" title="statement not covered" >(avcclength - data[2]) / 256;</span>
+        data[<span class="cstat-no" title="statement not covered" >1] = avcclength % 256;</span>
+        data[<span class="cstat-no" title="statement not covered" >0] = (avcclength - data[1]) / 256;</span>
+      }
+&nbsp;
+      chunk.<span class="cstat-no" title="statement not covered" >data = data;</span>
+      // If it is AVC sequece Header.
+      if (<span class="cstat-no" title="statement not covered" >chunk.avcPacketType === 0) {</span>
+        this.<span class="cstat-no" title="statement not covered" >_avcSequenceHeaderParser(chunk.data);</span>
+        let <span class="cstat-no" title="statement not covered" >validate = this._datasizeValidator(chunk.datasize);</span>
+        if (<span class="cstat-no" title="statement not covered" >validate) {</span>
+          if (<span class="cstat-no" title="statement not covered" >this._hasScript &amp;&amp; !this._hasVideoSequence &amp;&amp; (!this.mccree.media.tracks.audioTrack || this._hasAudioSequence)) {</span>
+            this.<span class="cstat-no" title="statement not covered" >observer.trigger('METADATA_PARSED');</span>
+          } else <span class="cstat-no" title="statement not covered" >if (this._hasScript &amp;&amp; this._hasVideoSequence) {</span>
+            this.<span class="cstat-no" title="statement not covered" >observer.trigger('METADATA_CHANGED');</span>
+          }
+          this.<span class="cstat-no" title="statement not covered" >_hasVideoSequence = true;</span>
+        }
+      } else {
+        if (<span class="cstat-no" title="statement not covered" >!this._datasizeValidator(chunk.datasize)) {</span>
+          this.<span class="cstat-no" title="statement not covered" >logger.warn(this.TAG, this.logMsgs.TAG_LENGTH_ERROR + chunk.datasize);</span>
+        }
+        this.<span class="cstat-no" title="statement not covered" >observer.trigger('VIDEODATA_PARSED');</span>
+        this.<span class="cstat-no" title="statement not covered" >mccree.media.tracks.videoTrack.samples.push(chunk);</span>
+      }
+    }else{
+      this.<span class="cstat-no" title="statement not covered" >logger.warn(this.TAG, `codeid is ${codecID}`);</span>
+      chunk.<span class="cstat-no" title="statement not covered" >data = this.mccree.loaderBuffer.shift(chunk.datasize - 1);</span>
+      if (<span class="cstat-no" title="statement not covered" >!this._datasizeValidator(chunk.datasize)) {</span>
+        this.<span class="cstat-no" title="statement not covered" >logger.warn(this.TAG, this.logMsgs.TAG_LENGTH_ERROR + chunk.datasize);</span>
+      }
+      this.<span class="cstat-no" title="statement not covered" >observer.trigger('VIDEODATA_PARSED');</span>
+      this.<span class="cstat-no" title="statement not covered" >mccree.media.tracks.videoTrack.samples.push(chunk);</span>
+    }
+    delete <span class="cstat-no" title="statement not covered" >chunk.tagType;</span>
+  }
+&nbsp;
+  _datasizeValidator(<span class="fstat-no" title="function not covered" >datasize) {</span>
+    let <span class="cstat-no" title="statement not covered" >datasizeConfirm = this.mccree.loaderBuffer.toInt(0, 4);</span>
+    this.<span class="cstat-no" title="statement not covered" >mccree.loaderBuffer.shift(4);</span>
+    let <span class="cstat-no" title="statement not covered" >validate = datasizeConfirm === datasize + 11;</span>
+    return <span class="cstat-no" title="statement not covered" >validate;</span>
+  }
+  
+  _switchAudioSamplingFrequency(<span class="fstat-no" title="function not covered" >info) {</span>
+    let <span class="cstat-no" title="statement not covered" >samplingFrequencyIndex = (info &amp; 12) &gt;&gt;&gt; 2;</span>
+    let <span class="cstat-no" title="statement not covered" >samplingFrequencyList = [5500, 11025, 22050, 44100];</span>
+    return <span class="cstat-no" title="statement not covered" >samplingFrequencyList[samplingFrequencyIndex];</span>
+  }
+&nbsp;
+  _switchAudioChannel(<span class="fstat-no" title="function not covered" >info) {</span>
+    let <span class="cstat-no" title="statement not covered" >sampleTrackNumIndex = info &amp; 1;</span>
+    let <span class="cstat-no" title="statement not covered" >sampleTrackNumList = [1, 2];</span>
+    return <span class="cstat-no" title="statement not covered" >sampleTrackNumList[sampleTrackNumIndex];</span>
+  }
+&nbsp;
+  _aacSequenceHeaderParser(<span class="fstat-no" title="function not covered" >data) {</span>
+    let <span class="cstat-no" title="statement not covered" >ret = {};</span>
+    ret.<span class="cstat-no" title="statement not covered" >hasSpecificConfig = true;</span>
+    ret.<span class="cstat-no" title="statement not covered" >objectType = data[1] &gt;&gt;&gt; 3;</span>
+    ret.<span class="cstat-no" title="statement not covered" >sampleRateIndex = ((data[1] &amp; 7) &lt;&lt; 1) | (data[2] &gt;&gt;&gt; 7);</span>
+    ret.<span class="cstat-no" title="statement not covered" >audiosamplerate = this._switchAudioSampleRate(ret.sampleRateIndex);</span>
+    ret.<span class="cstat-no" title="statement not covered" >channelCount = (data[2] &amp; 120) &gt;&gt;&gt; 3;</span>
+    ret.<span class="cstat-no" title="statement not covered" >frameLength = (data[2] &amp; 4) &gt;&gt;&gt; 2;</span>
+    ret.<span class="cstat-no" title="statement not covered" >dependsOnCoreCoder = (data[2] &amp; 2) &gt;&gt;&gt; 1;</span>
+    ret.<span class="cstat-no" title="statement not covered" >extensionFlagIndex = data[2] &amp; 1;</span>
+    return <span class="cstat-no" title="statement not covered" >ret;</span>
+  }
+&nbsp;
+  _switchAudioSampleRate(<span class="fstat-no" title="function not covered" >samplingFrequencyIndex) {</span>
+    let <span class="cstat-no" title="statement not covered" >samplingFrequencyList = [96000, 88200, 64000, 48000, 44100, 32000, 24000, 22050, 16000, 12000, 11025, 8000, 7350];</span>
+    return <span class="cstat-no" title="statement not covered" >samplingFrequencyList[samplingFrequencyIndex];</span>
+  }
+&nbsp;
+  _avcSequenceHeaderParser(<span class="fstat-no" title="function not covered" >data) {</span>
+    let <span class="cstat-no" title="statement not covered" >track = this.mccree.media.tracks.videoTrack;</span>
+&nbsp;
+    if (<span class="cstat-no" title="statement not covered" >!track) {</span>
+      return;
+    }
+&nbsp;
+    let <span class="cstat-no" title="statement not covered" >offset = 0;</span>
+&nbsp;
+    if (<span class="cstat-no" title="statement not covered" >!track.meta) {</span>
+      track.<span class="cstat-no" title="statement not covered" >meta = defaultVideoConfig;</span>
+    }
+    let <span class="cstat-no" title="statement not covered" >meta = track.meta;</span>
+&nbsp;
+    meta.<span class="cstat-no" title="statement not covered" >configurationVersion = data[0];</span>
+    meta.<span class="cstat-no" title="statement not covered" >avcProfileIndication = data[1];</span>
+    meta.<span class="cstat-no" title="statement not covered" >profileCompatibility = data[2];</span>
+    meta.<span class="cstat-no" title="statement not covered" >avcLevelIndication = data[3] / 10;</span>
+    meta.<span class="cstat-no" title="statement not covered" >nalUnitLength = (data[4] &amp; 0x03) + 1;</span>
+&nbsp;
+    let <span class="cstat-no" title="statement not covered" >numOfSps = data[5] &amp; 0x1f;</span>
+    offset = <span class="cstat-no" title="statement not covered" >6;</span>
+    let <span class="cstat-no" title="statement not covered" >config = {};</span>
+&nbsp;
+    // parse SPS
+    for (<span class="cstat-no" title="statement not covered" >let i = 0; i &lt; numOfSps; i++) {</span>
+      let <span class="cstat-no" title="statement not covered" >size = data[offset] * 255 + data[offset + 1];</span>
+      offset += <span class="cstat-no" title="statement not covered" >2;</span>
+&nbsp;
+      let <span class="cstat-no" title="statement not covered" >sps = new Uint8Array(size);</span>
+      for (<span class="cstat-no" title="statement not covered" >let j = 0; j &lt; size; j++) {</span>
+        sps[<span class="cstat-no" title="statement not covered" >j] = data[offset + j];</span>
+      }
+&nbsp;
+      // codec string
+      let <span class="cstat-no" title="statement not covered" >codecString = 'avc1.';</span>
+      for (<span class="cstat-no" title="statement not covered" >var j = 1; j &lt; 4; j++) {</span>
+        var <span class="cstat-no" title="statement not covered" >h = sps[j].toString(16);</span>
+        if (<span class="cstat-no" title="statement not covered" >h.length &lt; 2) {</span>
+          h = <span class="cstat-no" title="statement not covered" >'0' + h;</span>
+        }
+        codecString += <span class="cstat-no" title="statement not covered" >h;</span>
+      }
+&nbsp;
+      meta.<span class="cstat-no" title="statement not covered" >codec = codecString;</span>
+&nbsp;
+      offset += <span class="cstat-no" title="statement not covered" >size;</span>
+      config = <span class="cstat-no" title="statement not covered" >SPSParser.parseSPS(sps);</span>
+    }
+&nbsp;
+    let <span class="cstat-no" title="statement not covered" >numOfPps = data[offset];</span>
+    offset++;
+    for (<span class="cstat-no" title="statement not covered" >let i = 0; i &lt; numOfPps; i++) {</span>
+      let <span class="cstat-no" title="statement not covered" >size = data[offset] * 255 + data[offset + 1];</span>
+      offset += <span class="cstat-no" title="statement not covered" >2;</span>
+      let <span class="cstat-no" title="statement not covered" >pps = new Uint8Array(size);</span>
+      for (<span class="cstat-no" title="statement not covered" >let j = 0; j &lt; size; j++) {</span>
+        pps[<span class="cstat-no" title="statement not covered" >j] = data[offset + j];</span>
+      }
+      offset += <span class="cstat-no" title="statement not covered" >size;</span>
+      this.<span class="cstat-no" title="statement not covered" >mccree.media.tracks.videoTrack.pps = pps;</span>
+    }
+&nbsp;
+    if (<span class="cstat-no" title="statement not covered" >config &amp;&amp; config.codec_size) {</span>
+      meta.<span class="cstat-no" title="statement not covered" >codecWidth = config.codec_size.width;</span>
+      meta.<span class="cstat-no" title="statement not covered" >codecHeight = config.codec_size.height;</span>
+      meta.<span class="cstat-no" title="statement not covered" >presentWidth = config.present_size.width;</span>
+      meta.<span class="cstat-no" title="statement not covered" >presentHeight = config.present_size.height;</span>
+    }
+&nbsp;
+    meta.<span class="cstat-no" title="statement not covered" >profile = config.profile_string || meta.profile;</span>
+    meta.<span class="cstat-no" title="statement not covered" >level = config.level_string || meta.level;</span>
+    meta.<span class="cstat-no" title="statement not covered" >bitDepth = config.bit_depth || meta.bitDepth;</span>
+    meta.<span class="cstat-no" title="statement not covered" >chromaFormat = config.chroma_format || meta.chromaFormat;</span>
+&nbsp;
+    if (<span class="cstat-no" title="statement not covered" >meta.sarRatio) {</span>
+      meta.<span class="cstat-no" title="statement not covered" >sarRatio.width = config.sar_ratio.width;</span>
+      meta.<span class="cstat-no" title="statement not covered" >sarRatio.height = config.sar_ratio.height;</span>
+    }
+&nbsp;
+    if (<span class="cstat-no" title="statement not covered" >meta.frameRate &amp;&amp; config.frame_rate.fixed &amp;&amp; config.frame_rate.fps_num &gt; 0 &amp;&amp; config.frame_rate.fps_den &gt; 0) {</span>
+      meta.<span class="cstat-no" title="statement not covered" >frameRate = config.frame_rate;</span>
+    }
+&nbsp;
+    let <span class="cstat-no" title="statement not covered" >fps_den = meta.frameRate.fps_den;</span>
+    let <span class="cstat-no" title="statement not covered" >fps_num = meta.frameRate.fps_num;</span>
+    meta.<span class="cstat-no" title="statement not covered" >refSampleDuration = Math.floor(meta.timescale * (fps_den / fps_num));</span>
+&nbsp;
+    meta.<span class="cstat-no" title="statement not covered" >avcc = new Uint8Array(data.length);</span>
+    meta.<span class="cstat-no" title="statement not covered" >avcc.set(data);</span>
+    track.<span class="cstat-no" title="statement not covered" >meta = meta;</span>
+  }
+}
+export default FLVDemuxer;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Aug 29 2018 17:13:26 GMT+0800 (CST)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
