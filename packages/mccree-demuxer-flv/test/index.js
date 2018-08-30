@@ -2,7 +2,16 @@
 const chai = require('chai');
 const demux = require('../src/index.js').default;
 const expect = chai.expect;
+const reader = require('read-file');
 //de
+let flvData;
+reader('/devspace/open-mccree/packages/mccree-demuxer-flv/test/test.flv', function(err, buffer) {
+  if(!err) {
+    flvData = buffer;
+  } else {
+    flvData = err;
+  }
+});
 let MesNum = 0;
 let tri;
 let logMsg = '';
@@ -34,10 +43,7 @@ let Mccree = {
     info: function(t,m) { logMsg = m; },
     warn: function(t,m) { logMsg = m; }
   },
-  loaderBuffer: {
-    push: function(data) {},
-    clear: function() {}
-  },
+  loaderBuffer: new ArrayBuffer(),
   getMediaElement: function(){}
 };
 
@@ -66,5 +72,8 @@ describe('construction', function(){
 let demuxer = new demux(config);
 describe('init', function(){
   demuxer.init(Mccree);
+  it('init test', function(){
+    expect(flvData).to.be.equal('1');
+  });
 });
 
