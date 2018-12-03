@@ -49,8 +49,10 @@ let errorDetails = {
 
 let logMessages = {
   NOT_INITED: 'This module is not init yet',
-
   CONNECTED: 'Connected to the source',
+  CACHE_CLEAR: 'cache clear',
+  LIVE_DESTORYING: 'Live is destroying',
+  LIVE_DESTORYED: 'Live is destroyed',
 
   //Error Messages
   NOT_FOUND: 'The source is not founded',

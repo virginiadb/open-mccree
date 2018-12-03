@@ -30,6 +30,15 @@ function _checkBuffer () {
 $('#stream').val(window.localStorage['flvaddress']);
 
 var logMsg = {
+  //debug information when clearing cache
+  CACHE_CLEAR: '清洗能量槽',
+  
+  //debug information when the live is destoyed
+  LIVE_DESTORYED: '直播已清除',
+  
+  //debug information when destroying the live
+  LIVE_DESTORY: '直播正在清除',
+  
   //debug information when the live is initialized
   INIT_LIVE: '直播装置启动',
   

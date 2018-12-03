@@ -104,7 +104,7 @@ export class PandaMccreeLive extends Mccree {
 
   destroy() {
     let that = this;
-    this.logger.debug(that.TAG, 'Live destroying');
+    this.logger.debug(that.TAG, this.logMsgs.LIVE_DESTORYING);
     this.off();
     let promise = new Promise((resolve, reject) => {
       clearInterval(that.statisticTimmer);
@@ -114,7 +114,6 @@ export class PandaMccreeLive extends Mccree {
           resolve('already destroyed');
           return;
         }
-
         that.mseController.destroy();
         that.detachMedia();
         this.media = null;
@@ -122,7 +121,7 @@ export class PandaMccreeLive extends Mccree {
         that.loader = null;
         that.remux = null;
         that.demux = null;
-        that.logger.debug(that.TAG, 'Live destroyed');
+        that.logger.debug(that.TAG, this.logMsgs.LIVE_DESTORYED);
         resolve('destroyed');
       }).catch(err => {
         resolve('destroyed');
@@ -200,7 +199,9 @@ export class PandaMccreeLive extends Mccree {
         });
         this.loadbytes = 0;
       }
-    } catch (e) {}
+    } catch (e) {
+      
+    }
   }
 
   attachMediaElement(mediaElement) {

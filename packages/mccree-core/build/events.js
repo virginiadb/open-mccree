@@ -55,6 +55,8 @@ var logMessages = {
 
   CONNECTED: 'Connected to the source',
 
+  CACHE_CLEAR: 'cache clear',
+
   //Error Messages
   NOT_FOUND: 'The source is not founded',
   FORBIDDEN: 'forbidden',

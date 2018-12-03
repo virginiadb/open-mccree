@@ -3,14 +3,12 @@ class MSEController {
     this.TAG = 'Mccree-plugin-mse';
     this.type = 'plugin';
     this.mediaSource = new window.MediaSource();
-    this._lastappand = 'audio';
     this.mediaElement = null;
     this.seekables = [];
     this.mccree = null;
     this.observer = null;
     this.config = null;
     this._initAppanded = false;
-    this._lastappand = 'audio';
     this.mediaElement = null;
     this.lastSeek = -1;
     this.startTime = undefined;
@@ -39,6 +37,7 @@ class MSEController {
         that.startTime = undefined;
       });
     }
+    
     if (this.seekables[this.seekables.length - 1] > this.lastSeek
       && this.mediaElement
       && this.mediaElement.readyState === 2
@@ -70,7 +69,6 @@ class MSEController {
     }
 
     this._onMediaSegment();
-
   }
 
   clearBuffer() {
@@ -93,7 +91,7 @@ class MSEController {
       this.vsourceBuffer.remove(this._lastClearTime, playTime - 10);
       this.asourceBuffer.remove(this._lastClearTime, playTime - 10);
       this._lastClearTime = playTime - 10;
-      this.logger.debug(this.TAG, 'Cache clear');
+      this.logger.debug(this.TAG, this.logMsgs.CACHE_CLEAR);
       while (this.seekables && this.seekables.length > 0 && this.seekables[0] / 1e3 < playTime - 10) {
         this.seekables.shift();
       }
@@ -129,7 +127,6 @@ class MSEController {
     if (this.mccree.remuxBuffer.video.length < 1 || this.mccree.remuxBuffer.audio.length < 1) {
       return;
     }
-
 
     if (this.asourceBuffer && this.vsourceBuffer && !this.vsourceBuffer.updating && !this.asourceBuffer.updating) {
       try {
@@ -181,8 +178,7 @@ class MSEController {
     this.vsourceBuffer = this.mediaSource.addSourceBuffer('video/mp4;codecs=' + this.mccree.media.tracks.videoTrack.meta.codec);
     this.vsourceBuffer.appendBuffer(data.video);
 
-    let that = this;
-    that._onMediaSegment();
+    this._onMediaSegment();
     this.asourceBuffer.addEventListener('error', this.onError.bind(this));
     this.vsourceBuffer.addEventListener('error', this.onError.bind(this));
     this.mediaSource.addEventListener('error', this.onError.bind(this));
@@ -234,16 +230,16 @@ class MSEController {
         cdnip: this.mccree.media ? this.mccree.media.mediaInfo.cdn_ip : this.mccree.cdnip
       };
       this.observer.trigger('media_info', info);
-    } catch (e) {}
+    } catch (e) {
+      this.logger.error(this.TAG, 'Cache error of ' + e.code);
+    }
   }
+  
   pause() {
     this.mediaElement.pause();
   }
 
   destroy() {
-    if (!this.mediaSource || !this.asourceBuffer || !this.vsourceBuffer) {
-      return;
-    }
     this.removeSourceBuffer();
     this.detachMediaElement();
     this.asourceBuffer = null;
@@ -267,7 +263,6 @@ class MSEController {
   }
 
   onError(error) {
-    // mediaError一般会一直报。此时肯能已经销毁准备换Flash。不一定还有mediaElment
     if (this.mediaElement && this.mediaElement.error && !this.reloading) {
       this.observer.trigger('error', this.events.errorTypes.MEDIA_ERROR, "MediaMSEError", {
         code: 11
