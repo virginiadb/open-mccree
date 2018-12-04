@@ -1,3 +1,13 @@
+/**
+ * A controller for MSE
+ * init(mccree)
+ * play()
+ * pause()
+ * attachMediaElement(mediaElement)
+ * detachMediaElement()
+ * removeSourceBuffer()
+ * destroy()
+ */
 class MSEController {
   constructor() {
     this.TAG = 'Mccree-plugin-mse';
@@ -15,6 +25,7 @@ class MSEController {
     this._lastClearTime = 0;
   }
 
+  // public
   init(mccree) {
     this.mccree = mccree;
     this.observer = mccree.observer;
@@ -23,11 +34,13 @@ class MSEController {
     this.observer.on('MEDIA_SEGMENT_REMUXED', this._onMediaSegment.bind(this));
   }
 
+  // public
   play() {
     this.mediaElement.play();
   }
 
-  checkState() {
+  // private
+  _checkState() {
     if (this.config.autoReload > 15e3
       && this.mediaElement
       && this.mediaElement.readyState < 3
@@ -71,7 +84,8 @@ class MSEController {
     this._onMediaSegment();
   }
 
-  clearBuffer() {
+  // private
+  _clearBuffer() {
     if (!this.mediaElement) {
       return;
     }
@@ -98,16 +112,18 @@ class MSEController {
     }
   }
 
+  // public
   attachMediaElement(mediaElement) {
     this.mediaElement = mediaElement;
     this.mediaElement.loop = true;
     this.mediaSourceObjectURL = window.URL.createObjectURL(this.mediaSource);
     this.mediaElement.src = this.mediaSourceObjectURL;
-    this.mediaElement.onerror = this.onError.bind(this);
-    this.mediaElement.oncanplay = this.recordStartTime.bind(this);
-    this.mediaElement.onstalled = this.checkState.bind(this);
+    this.mediaElement.onerror = this._onError.bind(this);
+    this.mediaElement.oncanplay = this._recordStartTime.bind(this);
+    this.mediaElement.onstalled = this._checkState.bind(this);
   }
 
+  // public
   detachMediaElement() {
     if (this.mediaElement) {
       this.mediaElement.onerror = null;
@@ -116,13 +132,14 @@ class MSEController {
     }
   }
   
+  // private
   _onMediaSegment() {
     // currently the player will play when 500ms data is ready in the buffer.
     if (!this._initAppanded && this.mccree.remuxBuffer.lastDts > 500) {
       this._onInitSegment.call(this);
     }
 
-    this.clearBuffer.call(this);
+    this._clearBuffer.call(this);
 
     if (this.mccree.remuxBuffer.video.length < 1 || this.mccree.remuxBuffer.audio.length < 1) {
       return;
@@ -141,7 +158,7 @@ class MSEController {
           if (vdata.seekable && vdata.timestamp > 0) {
             this.seekables.push(vdata.timestamp);
           }
-          this.checkState.bind(this);
+          this._checkState.bind(this);
         } else if (this.mediaElement.error) {
           this.observer.trigger('error', this.events.errorTypes.MEDIA_ERROR, "MediaMSEError", {
             code: 11
@@ -158,6 +175,7 @@ class MSEController {
     }
   }
 
+  // private
   _onInitSegment() {
     this.seekables = [];
     if (this.mediaSource.readyState !== 'open') {
@@ -167,6 +185,7 @@ class MSEController {
     }
   }
 
+  // private
   _appendInitSegment() {
     let data = this.mccree.initSegment;
     if (this._initAppanded || !data) {
@@ -179,10 +198,10 @@ class MSEController {
     this.vsourceBuffer.appendBuffer(data.video);
 
     this._onMediaSegment();
-    this.asourceBuffer.addEventListener('error', this.onError.bind(this));
-    this.vsourceBuffer.addEventListener('error', this.onError.bind(this));
-    this.mediaSource.addEventListener('error', this.onError.bind(this));
-    this.vsourceBuffer.addEventListener('updateend', this.checkState.bind(this));
+    this.asourceBuffer.addEventListener('error', this._onError.bind(this));
+    this.vsourceBuffer.addEventListener('error', this._onError.bind(this));
+    this.mediaSource.addEventListener('error', this._onError.bind(this));
+    this.vsourceBuffer.addEventListener('updateend', this._checkState.bind(this));
     try {
       if (this.media && this.media.mediaInfo && this.media.mediaInfo.cdn_ip) {
         this.mccree.cdnip = this.media.mediaInfo.cdn_ip;
@@ -235,10 +254,12 @@ class MSEController {
     }
   }
   
+  // public
   pause() {
     this.mediaElement.pause();
   }
 
+  // public
   destroy() {
     this.removeSourceBuffer();
     this.detachMediaElement();
@@ -249,20 +270,22 @@ class MSEController {
     this.seekables = [];
   }
 
-  removeSourceBuffer () {
+  // public
+  removeSourceBuffer() {
     this._initAppanded = false;
     this.mediaElement.pause();
     URL.revokeObjectURL(this.mediaElement.src);
-    this.asourceBuffer && this.asourceBuffer.removeEventListener('error', this.onError.bind(this));
-    this.vsourceBuffer && this.vsourceBuffer.removeEventListener('error', this.onError.bind(this));
-    this.vsourceBuffer && this.vsourceBuffer.removeEventListener('updateend', this.checkState.bind(this));
+    this.asourceBuffer && this.asourceBuffer.removeEventListener('error', this._onError.bind(this));
+    this.vsourceBuffer && this.vsourceBuffer.removeEventListener('error', this._onError.bind(this));
+    this.vsourceBuffer && this.vsourceBuffer.removeEventListener('updateend', this._checkState.bind(this));
     if (this.mediaSource && this.mediaSource.sourceBuffers.length > 1) {
       this.mediaSource.removeSourceBuffer(this.asourceBuffer);
       this.mediaSource.removeSourceBuffer(this.vsourceBuffer);
     }
   }
 
-  onError(error) {
+  // private
+  _onError(error) {
     if (this.mediaElement && this.mediaElement.error && !this.reloading) {
       this.observer.trigger('error', this.events.errorTypes.MEDIA_ERROR, "MediaMSEError", {
         code: 11
@@ -272,7 +295,8 @@ class MSEController {
     }
   }
 
-  recordStartTime() {
+  // private
+  _recordStartTime() {
     if (!this.startTime) {
       this.startTime = new Date().getTime();
     }
