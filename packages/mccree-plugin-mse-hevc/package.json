@@ -1,6 +1,6 @@
 {
-  "name": "mccree-plugin-mse-hevc",
-  "version": "2.0.4",
+  "name": "@daibing/mccree-plugin-mse-hevc",
+  "version": "2.0.5",
   "description": "",
   "main": "build/index.js",
   "scripts": {
@@ -45,6 +45,6 @@
     "mocha": "3.4.2"
   },
   "dependencies": {
-    "mccree-helper-browser": "^2.0.4"
+    "@daibing/mccree-helper-browser": "^2.0.5"
   }
 }

@@ -1,6 +1,6 @@
 {
-  "name": "mccree-loader-fetch",
-  "version": "2.0.4",
+  "name": "@daibing/mccree-loader-fetch",
+  "version": "2.0.5",
   "description": "",
   "main": "build/index.js",
   "scripts": {
@@ -22,7 +22,7 @@
     "url": "https://github.com/xiongmaotv/open-mccree.git"
   },
   "dependencies": {
-    "mccree-controller-loader": "^2.0.4"
+    "@daibing/mccree-controller-loader": "^2.0.5"
   },
   "devDependencies": {
     "babel": "6.23.0",

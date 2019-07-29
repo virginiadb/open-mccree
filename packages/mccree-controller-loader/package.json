@@ -1,6 +1,6 @@
 {
-  "name": "mccree-controller-loader",
-  "version": "2.0.4",
+  "name": "@daibing/mccree-controller-loader",
+  "version": "2.0.5",
   "description": "",
   "main": "build/index.js",
   "scripts": {
