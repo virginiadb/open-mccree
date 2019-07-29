@@ -1,6 +1,6 @@
 {
-  "name": "@daibing/mccree-loader-moz-xhr",
-  "version": "2.0.5",
+  "name": "@gaodun/mccree-loader-moz-xhr",
+  "version": "3.0.0",
   "description": "Collection of helper functions for mccree",
   "main": "build/index.js",
   "scripts": {
@@ -22,7 +22,7 @@
     "url": "https://github.com/xiongmaotv/open-mccree.git"
   },
   "dependencies": {
-    "@daibing/mccree-controller-loader": "^2.0.5"
+    "@gaodun/mccree-controller-loader": "^3.0.0"
   },
   "devDependencies": {
     "babel": "^6.23.0",

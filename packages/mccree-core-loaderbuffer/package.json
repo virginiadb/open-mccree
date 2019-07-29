@@ -1,6 +1,6 @@
 {
-  "name": "@daibing/mccree-core-loaderbuffer",
-  "version": "2.0.5",
+  "name": "@gaodun/mccree-core-loaderbuffer",
+  "version": "3.0.0",
   "description": "",
   "main": "build/index.js",
   "scripts": {

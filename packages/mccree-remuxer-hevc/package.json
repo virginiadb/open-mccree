@@ -1,6 +1,6 @@
 {
-  "name": "@daibing/mccree-remuxer-hevc",
-  "version": "2.0.5",
+  "name": "@gaodun/mccree-remuxer-hevc",
+  "version": "3.0.0",
   "description": "",
   "main": "build/index.js",
   "scripts": {

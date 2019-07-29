@@ -1,6 +1,6 @@
 {
-  "name": "@daibing/mccree-core",
-  "version": "2.0.5",
+  "name": "@gaodun/mccree-core",
+  "version": "3.0.0",
   "description": "",
   "scripts": {
     "test": "./scripts/test.sh",
@@ -33,9 +33,9 @@
     "watchify": "^3.8.0"
   },
   "dependencies": {
-    "@daibing/mccree-core-loaderbuffer": "^2.0.5",
-    "@daibing/mccree-helper-logger": "^2.0.5",
-    "@daibing/mccree-helper-utils": "^2.0.5",
+    "@gaodun/mccree-core-loaderbuffer": "^3.0.0",
+    "@gaodun/mccree-helper-logger": "^3.0.0",
+    "@gaodun/mccree-helper-utils": "^3.0.0",
     "events": "1.1.1"
   }
 }

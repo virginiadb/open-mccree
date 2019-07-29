@@ -1,6 +1,6 @@
 {
-  "name": "@daibing/panda-mccree-live",
-  "version": "2.0.5",
+  "name": "@gaodun/panda-mccree-live",
+  "version": "3.0.0",
   "description": "flvdemuxer",
   "main": "build/index.js",
   "scripts": {
@@ -47,18 +47,18 @@
     "webpack-stream": "3.2.0"
   },
   "dependencies": {
-    "@daibing/mccree-core": "^2.0.5",
-    "@daibing/mccree-core-loaderbuffer": "^2.0.5",
-    "@daibing/mccree-demuxer-flv": "^2.0.5",
-    "@daibing/mccree-helper-browser": "^2.0.5",
-    "@daibing/mccree-helper-logger": "^2.0.5",
-    "@daibing/mccree-loader-fetch": "^2.0.5",
-    "@daibing/mccree-loader-moz-xhr": "^2.0.5",
-    "@daibing/mccree-loader-tencentp2p": "^2.0.5",
-    "@daibing/mccree-loader-xyp2p": "^2.0.5",
-    "@daibing/mccree-plugin-mse": "^2.0.5",
-    "@daibing/mccree-plugin-mse-hevc": "^2.0.5",
-    "@daibing/mccree-remuxer-hevc": "^2.0.5",
-    "@daibing/mccree-remuxer-mp4live": "^2.0.5"
+    "@gaodun/mccree-core": "^3.0.0",
+    "@gaodun/mccree-core-loaderbuffer": "^3.0.0",
+    "@gaodun/mccree-demuxer-flv": "^3.0.0",
+    "@gaodun/mccree-helper-browser": "^3.0.0",
+    "@gaodun/mccree-helper-logger": "^3.0.0",
+    "@gaodun/mccree-loader-fetch": "^3.0.0",
+    "@gaodun/mccree-loader-moz-xhr": "^3.0.0",
+    "@gaodun/mccree-loader-tencentp2p": "^3.0.0",
+    "@gaodun/mccree-loader-xyp2p": "^3.0.0",
+    "@gaodun/mccree-plugin-mse": "^3.0.0",
+    "@gaodun/mccree-plugin-mse-hevc": "^3.0.0",
+    "@gaodun/mccree-remuxer-hevc": "^3.0.0",
+    "@gaodun/mccree-remuxer-mp4live": "^3.0.0"
   }
 }

@@ -1,6 +1,6 @@
 {
-  "name": "@daibing/mccree-demuxer-flv",
-  "version": "2.0.5",
+  "name": "@gaodun/mccree-demuxer-flv",
+  "version": "3.0.0",
   "main": "build/index.js",
   "scripts": {
     "test": "./scripts/test.sh",
@@ -38,8 +38,8 @@
     "mocha": "3.4.2"
   },
   "dependencies": {
-    "@daibing/mccree-core-track": "^2.0.5",
-    "@daibing/mccree-helper-spsparser": "^2.0.5"
+    "@gaodun/mccree-core-track": "^3.0.0",
+    "@gaodun/mccree-helper-spsparser": "^3.0.0"
   },
   "bugs": {
     "url": "https://github.com/xiongmaotv/open-mccree/issues"

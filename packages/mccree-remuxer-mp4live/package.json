@@ -1,6 +1,6 @@
 {
-  "name": "@daibing/mccree-remuxer-mp4live",
-  "version": "2.0.5",
+  "name": "@gaodun/mccree-remuxer-mp4live",
+  "version": "3.0.0",
   "description": "",
   "main": "build/index.js",
   "scripts": {
@@ -45,6 +45,6 @@
     "mocha": "3.4.2"
   },
   "dependencies": {
-    "@daibing/mccree-helper-browser": "^2.0.5"
+    "@gaodun/mccree-helper-browser": "^3.0.0"
   }
 }

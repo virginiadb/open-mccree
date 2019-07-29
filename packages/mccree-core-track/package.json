@@ -1,6 +1,6 @@
 {
-  "name": "@daibing/mccree-core-track",
-  "version": "2.0.5",
+  "name": "@gaodun/mccree-core-track",
+  "version": "3.0.0",
   "description": "",
   "main": "build/index.js",
   "scripts": {
