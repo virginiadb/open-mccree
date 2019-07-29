@@ -1,25 +1,18 @@
 {
   "name": "mccree-demuxer-flv",
-  "version": "2.0.3",
-  "description": "",
+  "version": "2.0.4",
   "main": "build/index.js",
   "scripts": {
     "test": "./scripts/test.sh",
     "build": "gulp build"
   },
-  "license": {
-    "type": "Apache-2.0",
-    "url": "https://opensource.org/licenses/apache2.0.php"
-  },
+  "license": "UNLICENSED",
   "contributors": [
-    {
-      "name": "Jiang, Yuqing",
-      "email": "jiangyuqing@panda.tv"
-    }
+    "Jiang, Yuqing <jiangyuqing@panda.tv>"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/xiongmaotv/open-mccree.git"
+    "url": "git+https://github.com/xiongmaotv/open-mccree.git"
   },
   "devDependencies": {
     "babel": "6.23.0",
@@ -45,7 +38,13 @@
     "mocha": "3.4.2"
   },
   "dependencies": {
-    "mccree-core-track": "^2.0.3",
-    "mccree-helper-spsparser": "^2.0.3"
-  }
+    "mccree-core-track": "^2.0.4",
+    "mccree-helper-spsparser": "^2.0.4"
+  },
+  "bugs": {
+    "url": "https://github.com/xiongmaotv/open-mccree/issues"
+  },
+  "homepage": "https://github.com/xiongmaotv/open-mccree#readme",
+  "author": "daibing",
+  "description": ""
 }
