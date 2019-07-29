@@ -1,6 +1,6 @@
 {
   "name": "mccree-loader-tencentp2p",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Collection of helper functions for mccree",
   "main": "build/index.js",
   "scripts": {
@@ -22,7 +22,7 @@
     "url": "https://github.com/xiongmaotv/open-mccree.git"
   },
   "dependencies": {
-    "mccree-controller-loader": "^2.0.2"
+    "mccree-controller-loader": "^2.0.3"
   },
   "devDependencies": {
     "babel": "^6.23.0",

@@ -1,6 +1,6 @@
 {
   "name": "mccree-demuxer-flv",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "",
   "main": "build/index.js",
   "scripts": {
@@ -45,7 +45,7 @@
     "mocha": "3.4.2"
   },
   "dependencies": {
-    "mccree-core-track": "^2.0.2",
-    "mccree-helper-spsparser": "^2.0.2"
+    "mccree-core-track": "^2.0.3",
+    "mccree-helper-spsparser": "^2.0.3"
   }
 }

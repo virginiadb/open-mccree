@@ -1,6 +1,6 @@
 {
   "name": "panda-mccree-live",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "flvdemuxer",
   "main": "build/index.js",
   "scripts": {
@@ -47,18 +47,18 @@
     "webpack-stream": "3.2.0"
   },
   "dependencies": {
-    "mccree-core": "^2.0.2",
-    "mccree-core-loaderbuffer": "^2.0.2",
-    "mccree-demuxer-flv": "^2.0.2",
-    "mccree-helper-browser": "^2.0.2",
-    "mccree-helper-logger": "^2.0.2",
-    "mccree-loader-fetch": "^2.0.2",
-    "mccree-loader-moz-xhr": "^2.0.2",
-    "mccree-loader-tencentp2p": "^2.0.2",
-    "mccree-loader-xyp2p": "^2.0.2",
-    "mccree-plugin-mse": "^2.0.2",
-    "mccree-plugin-mse-hevc": "^2.0.2",
-    "mccree-remuxer-hevc": "^2.0.2",
-    "mccree-remuxer-mp4live": "^2.0.2"
+    "mccree-core": "^2.0.3",
+    "mccree-core-loaderbuffer": "^2.0.3",
+    "mccree-demuxer-flv": "^2.0.3",
+    "mccree-helper-browser": "^2.0.3",
+    "mccree-helper-logger": "^2.0.3",
+    "mccree-loader-fetch": "^2.0.3",
+    "mccree-loader-moz-xhr": "^2.0.3",
+    "mccree-loader-tencentp2p": "^2.0.3",
+    "mccree-loader-xyp2p": "^2.0.3",
+    "mccree-plugin-mse": "^2.0.3",
+    "mccree-plugin-mse-hevc": "^2.0.3",
+    "mccree-remuxer-hevc": "^2.0.3",
+    "mccree-remuxer-mp4live": "^2.0.3"
   }
 }
